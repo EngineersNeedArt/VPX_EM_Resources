@@ -1,4 +1,4 @@
-# VPX EM Resources
+# VPX (Visual Pinball) EM (electro-mechanical) Resources
 
 Resources for working on electro-mechanical (EM) tables for Visual Pinball (VPX).
 
