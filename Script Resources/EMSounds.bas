@@ -197,7 +197,7 @@ End Sub
 Dim StartButtonLevel
 StartButtonLevel = 1.0						'volume level; range [0, 1]
 
-Sub EMPlayStartButttonSound()
+Sub EMPlayStartButtonSound()
 	EMPlaySoundAtVolumePanAndFade "Start_Button", StartButtonLevel, kSoundPanLeft, kSoundFadeNearPlayer
 End Sub
 
@@ -219,7 +219,11 @@ Dim PlungerReleaseSoundLevel
 PlungerReleaseSoundLevel = 0.8				'volume level; range [0, 1]
 
 Sub EMPlayPlungerReleaseBallSound(plungerObj)
-	EMPlaySoundAtVolumeForObject "Plunger_Release_Ball", PlungerReleaseSoundLevel, plungerObj	
+	EMPlaySoundAtVolumeForObject "Plunger_Release_Ball", PlungerReleaseSoundLevel, plungerObj
+End Sub
+
+Sub EMPlayPlungerReleaseNoBallSound(plungerObj)
+	EMPlaySoundAtVolumeForObject "Plunger_Release_No_Ball", PlungerReleaseSoundLevel, plungerObj
 End Sub
 
 Dim StartBallSoundLevel
@@ -227,7 +231,7 @@ StartBallSoundLevel = 0.4					'volume level; range [0, 1]
 
 Sub EMPlayStartBallSound(which)
 	Dim sndName
-	If which=0 Then
+	If which = 0 Then
 		sndName = "StartBall1"
 	Else
 		sndName = "StartBall2-5"
@@ -432,6 +436,10 @@ Sub EMPlayMiddleBumperSound(bumperObj)
 	EMPlaySoundAtVolumeForObject SoundFX("Bumpers_Middle_" & Int(Rnd * 5) + 1,DOFContactors), EMVolumeForBall(ActiveBall) * BumperSoundScalar, bumperObj
 End Sub
 
+Sub EMPlayBottomBumperSound(bumperObj)
+	EMPlaySoundAtVolumeForObject SoundFX("Bumpers_Bottom_" & Int(Rnd * 5) + 1,DOFContactors), EMVolumeForBall(ActiveBall) * BumperSoundScalar, bumperObj
+End Sub
+
 Dim RolloverSoundLevel
 RolloverSoundLevel = 0.25					'volume level; range [0, 1]
 
@@ -487,6 +495,13 @@ Sub EMPlaySpinnerSound (spinnerObj)
 	EMPlaySoundAtVolumeForObject "Spinner", SpinnerSoundLevel, spinnerObj	
 End Sub
 
+Dim VariTargetLevel
+VariTargetLevel = 1.0						'volume level; range [0, 1]
+
+Sub EMPlayVariTargetSound()
+	EMPlaySoundAtVolumeForActiveBall "fx_solenoidoff", VariTargetLevel
+End Sub
+
 '------------------------------------------------------------------------------------- Other Sounds
 
 Dim ClickLevel
@@ -501,13 +516,6 @@ RotoStartLevel = 1.0						'volume level; range [0, 1]
 
 Sub EMPlayRotoStartSound()
 	EMPlaySoundAtVolumePanAndFade "RotoStart", RotoStartLevel, EMTransformPan(kSoundPanLeft), EMTransformFade(kSoundFadeNearBackglass)
-End Sub
-
-Dim VariTargetLevel
-VariTargetLevel = 1.0						'volume level; range [0, 1]
-
-Sub EMPlayVariTargetSound()
-	EMPlaySoundAtVolumeForActiveBall "fx_solenoidoff", VariTargetLevel
 End Sub
 
 Dim ChimeLevel
