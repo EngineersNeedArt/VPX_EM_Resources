@@ -321,15 +321,15 @@ Sub EMSPlayRightFlipperActivateSound (FlipperObj)
 	EMSPlaySoundLoopedAtVolumeForObject "buzz", LOOP_UNTIL_STOPPED, FLIPPER_BUZZ_VOLUME, FlipperObj
 End Sub
 
-Const FLIPPER_DOWN_VOLUME = 0.45			'volume level; range [0, 1]
+Const FLIPPER_DEACTIVATE_VOLUME = 0.45			'volume level; range [0, 1]
 
-Sub EMSPlayLeftFlipperDownSound (FlipperObj)
-	EMSPlaySoundAtVolumeForObject SoundFX ("Flipper_Left_Down_" & Int (Rnd * 7) + 1, DOFFlippers), FLIPPER_DOWN_VOLUME, FlipperObj
+Sub EMSPlayLeftFlipperDeactivateSound (FlipperObj)
+	EMSPlaySoundAtVolumeForObject SoundFX ("Flipper_Left_Down_" & Int (Rnd * 7) + 1, DOFFlippers), FLIPPER_DEACTIVATE_VOLUME, FlipperObj
 	StopSound "buzzL"
 End Sub
 
-Sub EMSPlayRightFlipperDownSound (FlipperObj)
-	EMSPlaySoundAtVolumeForObject SoundFX ("Flipper_Right_Down_" & Int (Rnd * 8) + 1, DOFFlippers), FLIPPER_DOWN_VOLUME, FlipperObj
+Sub EMSPlayRightFlipperDeactivateSound (FlipperObj)
+	EMSPlaySoundAtVolumeForObject SoundFX ("Flipper_Right_Down_" & Int (Rnd * 8) + 1, DOFFlippers), FLIPPER_DEACTIVATE_VOLUME, FlipperObj
 	StopSound "buzz"
 End Sub
 
