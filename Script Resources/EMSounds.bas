@@ -29,9 +29,9 @@ TableWidth = 1000							'reasonable defaults,
 TableHeight = 2000							'but please call EMSInit() to get real values assigned
 
 ' Pass table object, call before any sound is played
-Sub EMSInit (TableObject)
-	TableHeight = TableObject.Height
-	TableWidth = TableObject.Width
+Sub EMSInit (TableObj)
+	TableWidth = TableObj.Width
+	TableHeight = TableObj.Height
 End Sub
 
 '---------------------------------------------------------------------------- Play Positional Sound
