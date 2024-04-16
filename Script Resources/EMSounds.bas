@@ -273,14 +273,12 @@ Sub EMSPlayLeftFlipperUpAttackSound (FlipperObj)
 	Dim SoundLevel
 	SoundLevel = Rnd () * (FLIPPER_UP_ATTACK_MAX_VOLUME - FLIPPER_UP_ATTACK_MIN_VOLUME) + FLIPPER_UP_ATTACK_MIN_VOLUME
 	EMSPlaySoundAtVolumeForObject SoundFX ("Flipper_Attack-L01", DOFFlippers), SoundLevel, FlipperObj
-	EMSPlaySoundLoopedAtVolumeForObject "buzzL", LOOP_UNTIL_STOPPED, FLIPPER_BUZZ_VOLUME, FlipperObj
 End Sub
 
 Sub EMSPlayRightFlipperUpAttackSound (FlipperObj)
 	Dim SoundLevel
 	SoundLevel = Rnd () * (FLIPPER_UP_ATTACK_MAX_VOLUME - FLIPPER_UP_ATTACK_MIN_VOLUME) + FLIPPER_UP_ATTACK_MIN_VOLUME
 	EMSPlaySoundAtVolumeForObject SoundFX ("Flipper_Attack-R01", DOFFlippers), SoundLevel, FlipperObj
-	EMSPlaySoundLoopedAtVolumeForObject "buzz", LOOP_UNTIL_STOPPED, FLIPPER_BUZZ_VOLUME, FlipperObj
 End Sub
 
 Sub EMSPlayLeftFlipperUpSound (FlipperObj)
@@ -310,6 +308,7 @@ Sub EMSPlayLeftFlipperActivateSound (FlipperObj)
 		EMSPlayLeftFlipperUpAttackSound FlipperObj
 		EMSPlayLeftFlipperUpSound FlipperObj
 	End If
+	EMSPlaySoundLoopedAtVolumeForObject "buzzL", LOOP_UNTIL_STOPPED, FLIPPER_BUZZ_VOLUME, FlipperObj
 End Sub
 
 Sub EMSPlayRightFlipperActivateSound (FlipperObj)
@@ -319,6 +318,7 @@ Sub EMSPlayRightFlipperActivateSound (FlipperObj)
 		EMSPlayRightFlipperUpAttackSound FlipperObj
 		EMSPlayRightFlipperUpSound FlipperObj
 	End If
+	EMSPlaySoundLoopedAtVolumeForObject "buzz", LOOP_UNTIL_STOPPED, FLIPPER_BUZZ_VOLUME, FlipperObj
 End Sub
 
 Const FLIPPER_DOWN_VOLUME = 0.45			'volume level; range [0, 1]
