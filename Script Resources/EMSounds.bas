@@ -38,22 +38,22 @@ End Sub
 
 ' Calculates the volume of the sound based on the ball speed
 Function EMSVolumeForBall (Ball)
-    EMSVolumeForBall = Csng (EMSBallVelocity (Ball) ^2)
+    EMSVolumeForBall = CSng (EMSBallVelocity (Ball) ^2)
 End Function
 
 ' Scale pan so there is some bleed-over of left/right channels.
 ' ex: with headphones you don't want the plunger only in the right ear.
 Function EMSTransformPan (Pan)
 	If Pan > 0 Then
-		EMSTransformPan = Csng (Pan ^ PAN_TRANSFORM_EXPONENT)
+		EMSTransformPan = CSng (Pan ^ PAN_TRANSFORM_EXPONENT)
 	Else
-		EMSTransformPan = -Csng (Pan ^ PAN_TRANSFORM_EXPONENT)
+		EMSTransformPan = -CSng (Pan ^ PAN_TRANSFORM_EXPONENT)
 	End If
 End Function
 
 ' Determines pan based on X position on table (-1 is table-left, 0 is table-center, 1 is table-right).
 Function EMSPanForTableX (X)
-    EMSPanForTableX = Csng((X * 2 / TableWidth) - 1)
+    EMSPanForTableX = CSng ((X * 2 / TableWidth) - 1)
 	If EMSPanForTableX < MIN_SOUND_PAN_LEFT Then
 		EMSPanForTableX = MIN_SOUND_PAN_LEFT
 	ElseIf EMSPanForTableX > MAX_SOUND_PAN_RIGHT Then
@@ -64,15 +64,15 @@ End Function
 ' Scale fade so there is some bleed-over between front/back channels.
 Function EMSTransformFade (Fade)
 	If Fade > 0 Then
-		EMSTransformFade = Csng (Fade ^ FADE_TRANSFORM_EXPONENT)
+		EMSTransformFade = CSng (Fade ^ FADE_TRANSFORM_EXPONENT)
 	Else
-		EMSTransformFade = -Csng (Fade ^ FADE_TRANSFORM_EXPONENT)
+		EMSTransformFade = -CSng (Fade ^ FADE_TRANSFORM_EXPONENT)
 	End If
 End Function
 
 ' Determines fade based on Y position on table (-1 is table-far, 0 is table-center, 1 is table-near).
 Function EMSFadeForTableY (Y)
-    EMSFadeForTableY = Csng((Y * 2 / TableHeight) - 1)
+    EMSFadeForTableY = CSng ((Y * 2 / TableHeight) - 1)
 	If EMSFadeForTableY < MIN_SOUND_FADE_NEAR_BACKGLASS Then
 		EMSFadeForTableY = MIN_SOUND_FADE_NEAR_BACKGLASS
 	ElseIf EMSFadeForTableY > MAX_SOUND_FADE_NEAR_PLAYER Then
@@ -137,7 +137,7 @@ Const ROLLING_SOUND_SCALAR = 0.22
 
 ' Calculates the roll volume of the sound based on the ball speed.
 Function EMSVolumePlayfieldRoll (Ball)
-	EMSVolumePlayfieldRoll = ROLLING_SOUND_SCALAR * 0.0005 * Csng (EMSBallVelocity (Ball) ^ 3)
+	EMSVolumePlayfieldRoll = ROLLING_SOUND_SCALAR * 0.0005 * CSng (EMSBallVelocity (Ball) ^ 3)
 End Function
 
 ' Calculates the roll pitch of the sound based on the ball speed.
@@ -195,7 +195,7 @@ Sub RollingSoundTimer_Timer ()
 End Sub
 
 Sub OnBallBallCollision (Ball1, Ball2, Velocity)
-	PlaySound ("fx_collide"), 0, Csng (Velocity) ^ 2 / 2000, AudioPan (Ball1), 0, Pitch (Ball1), 0, 0, AudioFade (Ball1)
+	PlaySound ("fx_collide"), 0, CSng (Velocity) ^ 2 / 2000, AudioPan (Ball1), 0, Pitch (Ball1), 0, 0, AudioFade (Ball1)
 End Sub
 
 '------------------------------------------------------------------------------------- Start Sounds
