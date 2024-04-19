@@ -195,7 +195,7 @@ Sub RollingSoundTimer_Timer ()
 End Sub
 
 Sub OnBallBallCollision (Ball1, Ball2, Velocity)
-	PlaySound ("fx_collide"), 0, CSng (Velocity) ^ 2 / 2000, AudioPan (Ball1), 0, Pitch (Ball1), 0, 0, AudioFade (Ball1)
+	PlaySound ("BallCollide"), 0, CSng (Velocity) ^ 2 / 2000, AudioPan (Ball1), 0, Pitch (Ball1), 0, 0, AudioFade (Ball1)
 End Sub
 
 '------------------------------------------------------------------------------------- Start Sounds
@@ -204,12 +204,6 @@ Const COIN_VOLUME = 1.0						'volume level; range [0, 1]
 
 Sub EMSPlayCoinSound ()
 	EMSPlaySoundAtVolumePanAndFade ("Coin_In_" & Int (Rnd * 3) + 1), COIN_VOLUME, SOUND_PAN_CENTER, EMSTransformFade(SOUND_FADE_NEAR_PLAYER)
-End Sub
-
-Const START_BUTTON_VOLUME = 1.0				'volume level; range [0, 1]
-
-Sub EMSPlayStartButtonSound ()
-	EMSPlaySoundAtVolumePanAndFade "Start_Button", START_BUTTON_VOLUME, SOUND_PAN_LEFT, SOUND_FADE_NEAR_PLAYER
 End Sub
 
 Const STARTUP_VOLUME = 1.0					'volume level; range [0, 1]
@@ -254,7 +248,7 @@ End Sub
 
 Const ROTATE_THROUGH_PLAYERS_VOLUME = 0.8	'volume level; range [0, 1]
 
-Sub EMSPlayRotateThroughPlayersSound
+Sub EMSPlayRotateThroughPlayersSound ()
 	EMSPlaySoundAtVolumePanAndFade "RotateThruPlayers", ROTATE_THROUGH_PLAYERS_VOLUME, SOUND_PAN_CENTER, EMSTransformFade (SOUND_FADE_NEAR_PLAYER)
 End Sub
 
@@ -397,33 +391,6 @@ Sub EMSPlayRubberHitSound ()
 	End If
 End Sub
 
-Const POST_SOUND_SCALAR = 0.1				'volume level; range [0, 1]
-
-Sub EMSPlayPostHitSound ()
-	Dim FinalSpeedSquared
-  	FinalSpeedSquared = (Activeball.VelX * Activeball.VelX) + (Activeball.VelY * Activeball.VelY)
- 	If FinalSpeedSquared > 256 Then
-		EMSPlaySoundAtVolumeForActiveBall "fx_rubber2", EMSVolumeForBall (ActiveBall) * POST_SOUND_SCALAR
-	ElseIf FinalSpeedSquared >= 36 Then
- 		EMSPlayRubberHitSound
- 	End If
-End Sub
-
-Const SAUCER_LOCK_VOLUME = 0.8				'volume level; range [0, 1]
-
-Sub EMSPlaySaucerLockSound ()
-	EMSPlaySoundAtVolumeForActiveBall ("Saucer_Enter_" & Int (Rnd * 2) + 1), SAUCER_LOCK_VOLUME
-End Sub
-
-Const SAUCER_KICK_VOLUME = 0.8				'volume level; range [0, 1]
-
-Sub EMSPlaySaucerKickSound (scenario, saucerObj)
-	Select Case scenario
-		Case 0: EMSPlaySoundAtVolumeForObject SoundFX ("Saucer_Empty", DOFContactors), SAUCER_KICK_VOLUME, saucerObj
-		Case 1: EMSPlaySoundAtVolumeForObject SoundFX ("Saucer_Kick", DOFContactors), SAUCER_KICK_VOLUME, saucerObj
-	End Select
-End Sub
-
 Const SLINGSHOT_VOLUME = 0.95				'volume level; range [0, 1]
 
 Sub EMSPlayLeftSlingshotSound (Sling)
@@ -446,12 +413,6 @@ End Sub
 
 Sub EMSPlayBottomBumperSound (BumperObj)
 	EMSPlaySoundAtVolumeForObject SoundFX ("Bumpers_Bottom_" & Int (Rnd * 5) + 1, DOFContactors), EMSVolumeForBall (ActiveBall) * BUMPER_SOUND_SCALAR, BumperObj
-End Sub
-
-Const ROLLOVER_VOLUME = 0.25				'volume level; range [0, 1]
-
-Sub EMSPlayRolloverSound()
-	EMSPlaySoundAtVolumeForActiveBall ("Rollover_" & Int (Rnd * 4) + 1), ROLLOVER_VOLUME
 End Sub
 
 Const SENSOR_VOLUME = 1.0					'volume level; range [0, 1]
@@ -478,36 +439,12 @@ Sub EMSPlayDropTargetResetSound ()
 	EMSPlaySoundAtVolumePanAndFade "dropsup", DROP_TARGET_RESET_VOLUME, SOUND_PAN_CENTER, SOUND_FADE_CENTER
 End Sub
 
-Const PIN_HIT_VOLUME = 1.0					'volume level; range [0, 1]
-
-Sub EMSPlayPinHitSound ()
-	EMSPlaySoundAtVolumeForActiveBall "pinhit_low", PIN_HIT_VOLUME
-End Sub
-
-Const SPINNER_VOLUME = 1.0					'volume level; range [0, 1]
-
-Sub EMSPlaySpinnerSound (SpinnerObj)
-	EMSPlaySoundAtVolumeForObject "Spinner", SPINNER_VOLUME, SpinnerObj
-End Sub
-
-Const VARI_TARGET_VOLUME = 1.0				'volume level; range [0, 1]
-
-Sub EMSPlayVariTargetSound ()
-	EMSPlaySoundAtVolumeForActiveBall "fx_solenoidoff", VARI_TARGET_VOLUME
-End Sub
-
 '------------------------------------------------------------------------------------- Other Sounds
 
 Const CLICK_VOLUME = 1.0					'volume level; range [0, 1]
 
 Sub EMSPlayClickSound ()
 	EMSPlaySoundAtVolumePanAndFade "click", CLICK_VOLUME, SOUND_PAN_CENTER, SOUND_FADE_CENTER
-End Sub
-
-Const ROTO_START_VOLUME = 1.0				'volume level; range [0, 1]
-
-Sub EMSPlayRotoStartSound ()
-	EMSPlaySoundAtVolumePanAndFade "RotoStart", ROTO_START_VOLUME, EMSTransformPan (SOUND_PAN_LEFT), EMSTransformFade (SOUND_FADE_NEAR_BACKGLASS)
 End Sub
 
 Const CHIME_VOLUME = 1.0					'volume level; range [0, 1]
@@ -564,12 +501,6 @@ Const MOTOR_LEER_VOLUME = 1.0				'volume level; range [0, 1]
 
 Sub EMSPlayMotorLeerSound ()
 	EMSPlaySoundAtVolumePanAndFade "MotorLeer", MOTOR_LEER_VOLUME, SOUND_PAN_CENTER, EMSTransformFade (SOUND_FADE_NEAR_BACKGLASS)
-End Sub
-
-Const MOTOR_PAUSE_VOLUME = 1.0				'volume level; range [0, 1]
-
-Sub EMSPlayMotorPauseSound ()
-	EMSPlaySoundAtVolumePanAndFade "MotorPause", MOTOR_PAUSE_VOLUME, SOUND_PAN_CENTER, EMSTransformFade (SOUND_FADE_NEAR_BACKGLASS)
 End Sub
 
 '==================================================================================================
