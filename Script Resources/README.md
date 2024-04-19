@@ -1,17 +1,22 @@
-‘ EM Sounds Public Routines
+**EMSounds.bas Public Routines**
 
-‘ Init
+Inititialization:
+```
 EMSInit (TableObj)
+```
 
-‘ General purpose spatial sound functions
+General purpose spatial sound functions:
+```
 EMSPlaySoundAtVolumePanAndFade (SoundName, Volume, Pan, Fade)
 EMSPlaySoundAtVolumeForObject (SoundName, Volume, ForObj)
 EMSPlaySoundAtVolumeForActiveBall (SoundName, Volume)
 EMSPlaySoundExistingAtVolumePanAndFade (SoundName, Volume, Pan, Fade)
 EMSPlaySoundExistingAtVolumeForActiveBall (SoundName, Volume)
 EMSPlaySoundLoopedAtVolumeForObject (SoundName, LoopCount, Volume, ForObj)
+```
 
-‘ Game begin sounds
+Game begin sounds:
+```
 EMSPlayCoinSound ()
 EMSPlayStartupSound ()
 EMSPlayPlungerPullSound (PlungerObj)
@@ -20,8 +25,10 @@ EMSPlayPlungerReleaseNoBallSound (PlungerObj)
 EMSPlayStartBallSound (Which)
 EMSPlayBallReleaseSound ()
 EMSPlayRotateThroughPlayersSound ()
+```
 
-‘ Flipper sounds
+Flipper sounds:
+```
 EMSPlayLeftFlipperActivateSound (FlipperObj)
 EMSPlayRightFlipperActivateSound (FlipperObj)
 EMSPlayLeftFlipperDeactivateSound (FlipperObj)
@@ -29,8 +36,10 @@ EMSPlayRightFlipperDeactivateSound (FlipperObj)
 EMSPlayLeftFlipperCollideSound (Parm)
 EMSPlayRightFlipperCollideSound (Parm)
 EMSStopBuzzSounds ()
+```
 
-‘ Playfield sounds
+Playfield sounds:
+```
 EMSPlayMetalHitSound ()
 EMSPlayGateHitSound ()
 EMSPlayDrainSound (DrainObj)
@@ -43,17 +52,24 @@ EMSPlayBottomBumperSound (BumperObj)
 EMSPlaySensorSound ()
 EMSPlayTargetHitSound ()
 EMSPlayDropTargetResetSound ()
+```
 
-‘ Other sounds
+Other sounds:
+```
 EMSPlayClickSound ()
 EMSPlayChimeSound (ChimeNum)
 EMSPlayBellSound (BellNum)
 EMSPlayKnockerSound ()
 EMSPlayMotorLeerSound ()
+```
 
 
-‘ EM Sounds Extra
+**EMSounds_Extra.bas Routines**
 
+*- requires code from EMSounds.bas*
+
+*- copy over routines as needed*
+```
 EMSPlayStartButtonSound ()
 EMSPlayPostHitSound ()
 EMSPlayPinHitSound ()
@@ -63,3 +79,4 @@ EMSPlaySaucerKickSound (scenario, saucerObj)
 EMSPlaySpinnerSound (SpinnerObj)
 EMSPlayVariTargetSound ()
 EMSPlayRotoStartSound ()
+```
