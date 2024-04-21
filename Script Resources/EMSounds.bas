@@ -2,7 +2,7 @@
 '											   EM Sounds
 '==================================================================================================
 
-Const MASTER_VOLUME = 0.8					'value no greater than 1.
+Const MASTER_VOLUME = 1.0					'value no greater than 1.
 Const PAN_TRANSFORM_EXPONENT = 10			'smaller value, less "spread" of audio channels
 Const FADE_TRANSFORM_EXPONENT = 10			'smaller value, less "spread" of audio channels
 Const MIN_SOUND_PAN_LEFT = -1.0
@@ -427,9 +427,9 @@ Sub EMSPlayTargetHitSound ()
 	Dim FinalSpeedSquared
 	FinalSpeedSquared = (Activeball.VelX * Activeball.VelX + Activeball.VelY * Activeball.VelY)
 	If FinalSpeedSquared > 100 Then
-		EMSPlaySoundAtVolumeForActiveBall SoundFX ("Target_Hit_" & Int(Rnd * 4) + 5, DOFTargets), EMSVolumeForBall (ActiveBall) * 0.45 * TARGET_SOUND_SCALAR
+		EMSPlaySoundAtVolumeForActiveBall SoundFX ("Target_Hit_" & Int (Rnd * 4) + 5, DOFTargets), EMSVolumeForBall (ActiveBall) * 0.45 * TARGET_SOUND_SCALAR
 	Else 
-		EMSPlaySoundAtVolumeForActiveBall SoundFX ("Target_Hit_" & Int(Rnd * 4) + 1, DOFTargets), EMSVolumeForBall (ActiveBall) * TARGET_SOUND_SCALAR
+		EMSPlaySoundAtVolumeForActiveBall SoundFX ("Target_Hit_" & Int (Rnd * 4) + 1, DOFTargets), EMSVolumeForBall (ActiveBall) * TARGET_SOUND_SCALAR
 	End If
 End Sub
 
@@ -501,6 +501,12 @@ Const MOTOR_LEER_VOLUME = 1.0				'volume level; range [0, 1]
 
 Sub EMSPlayMotorLeerSound ()
 	EMSPlaySoundAtVolumePanAndFade "MotorLeer", MOTOR_LEER_VOLUME, SOUND_PAN_CENTER, EMSTransformFade (SOUND_FADE_NEAR_BACKGLASS)
+End Sub
+
+Const NUDGE_VOLUME = 1.0				'volume level; range [0, 1]
+
+Sub EMSPlayNudgeSound ()
+	EMSPlaySoundAtVolumePanAndFade "Nudge_" & Int (Rnd * 3) + 1, NUDGE_VOLUME, SOUND_PAN_CENTER, SOUND_FADE_CENTER
 End Sub
 
 '==================================================================================================
